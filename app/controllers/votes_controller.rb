@@ -18,6 +18,7 @@ class VotesController < ApplicationController
   def show
   end
   def update
+    
   end
   def destroy
     vote = Vote.find(params[:id])

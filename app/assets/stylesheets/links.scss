@@ -1,6 +1,19 @@
 // Place all the styles related to the Links controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.post{
-  margin: 5px 0;
+.status{
+  margin:0;
+  padding:0;
+}
+.rank{
+
+}
+.post {
+  border-bottom: 1px solid #E6F3F7;
+}
+.post:nth-child(odd){
+  background-color: #E6F3F7;
+}
+.links-container ol {
+  padding-left: 0;
 }

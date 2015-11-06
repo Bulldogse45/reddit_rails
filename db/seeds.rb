@@ -5,4 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+user = User.create(username:"MattFair")
+
 links = Link.create([{title:"Yahoo!", location:"http://www.yahoo.com", user_id:1,vote_id:nil}, {title:"Google", location:"http://www.google.com", user_id:1,vote_id:nil},{title:"AOL", location:"http://www.aol.com", user_id:1,vote_id:nil},{title:"Reddit", location:"http://www.reddit.com", user_id:1,vote_id:nil},{title:"Apple", location:"http://www.apple.com", user_id:1,vote_id:nil},{title:"Facebook", location:"http://www.facebook.com", user_id:1,vote_id:nil},{title:"Stack Overflow", location:"http://www.stackoverflow.com", user_id:1,vote_id:nil},{title:"Ask", location:"http://www.ask.com", user_id:1,vote_id:nil},{title:"Ben Folds", location:"http://www.benfolds.com", user_id:1,vote_id:nil},])

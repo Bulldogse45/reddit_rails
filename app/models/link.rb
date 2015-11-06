@@ -1,6 +1,6 @@
 class Link < ActiveRecord::Base
 
-  belongs_to :author
+  belongs_to :user
   has_many :votes
-  
+
 end
