@@ -1,0 +1,36 @@
+<% if params[:action] == "new" || params[:action] == "create" %>
+  <h1 class="text-center">New Link</h1>
+<% else %>
+  <h1 class="text-center">Edit Link</h1>
+<% end %>
+<div class="errors">
+  <% if @link.errors.any? %>
+    <h2>Errors:<%=  %></h2>
+    <ul>
+      <% @link.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+<%= form_for @link, html: {class: "form-horizontal"} do |f| %>
+<div class="form-group">
+  <%= f.label :title, class: "col-sm-2 control-label" %>
+  <div class="col-sm-5">
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :location, class: "col-sm-2 control-label" %>
+  <div class="col-sm-8">
+    <%= f.text_area :location, class: "form-control bio-box", size:"3x5" %>
+  </div>
+</div>
+  <!-- <div class="row">
+    <#%= f.label :author_id, class: "col-xs-2 col-xs-offset-1" %>
+    <#%= collection_select(:post, :author_id, Author.all, :id, :name, prompt: true) %>
+  </div> -->
+  <div class="row">
+  <%= f.submit "Save", class: "center-block" %>
+  </div>
+<% end %>
