@@ -6,6 +6,9 @@ class LinksController < ApplicationController
   end
   def create
     @link = Link.new(link_params)
+      unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
+      @link.location = "http://"+@link.location
+    end
     if @link.save
       redirect_to root_path
     else
@@ -22,11 +25,14 @@ class LinksController < ApplicationController
   def update
   end
   def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    redirect_to root_path
   end
 
   private
 
   def link_params
-    params.permit(:link_id)
+    params.require(:link).permit(:location, :title)
   end
 end
