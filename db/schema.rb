@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106045420) do
+ActiveRecord::Schema.define(version: 20151107042656) do
 
   create_table "links", force: :cascade do |t|
     t.text     "location"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20151106045420) do
     t.string   "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
+    t.text     "aboutme"
   end
 
   create_table "votes", force: :cascade do |t|
