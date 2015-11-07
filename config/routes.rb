@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
    post 'links/use' => 'votes#use_link', :as => :use_link
 
+   get 'existing/link' => 'votes#existing_link_vote', :as =>:existing_link_vote
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -11,6 +11,10 @@ class VotesController < ApplicationController
     @vote = Vote.create(vote_params)
     redirect_to @vote.link.location
   end
+  def existing_link_vote
+    @vote = Vote.create(vote_params)
+    redirect_to root_path
+  end
   def new
   end
   def edit

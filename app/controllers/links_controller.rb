@@ -5,13 +5,13 @@ class LinksController < ApplicationController
     @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
   end
   def create
-    if Link.all.any?{|l|l.location == params[:location]}
-      render text:"Fool"
+    @link = Link.new(link_params)
+      unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
+      @link.location = "http://"+@link.location
+    end
+    if Link.all.any?{|l|l.location == @link.location}
+      redirect_to existing_link_vote_path(value:1, link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
-      @link = Link.new(link_params)
-        unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
-        @link.location = "http://"+@link.location
-      end
       if @link.save
         redirect_to root_path
       else
@@ -27,8 +27,8 @@ class LinksController < ApplicationController
     render "new"
   end
   def show
-    vote = Vote.create(vote_params)
-    redirect_to vote.link.location
+    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
+    @link = Link.find(params['id'])
   end
   def update
     @link = Link.find(params[:id])
