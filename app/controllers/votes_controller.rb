@@ -29,6 +29,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:link_id, :test)
+    params.permit(:link_id, :test,:value)
   end
 end

@@ -2,7 +2,7 @@ class LinksController < ApplicationController
 
 
   def index
-    @links = Link.all.sort_by{|l| l.votes.count}.reverse
+    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
   end
   def create
     @link = Link.new(link_params)
