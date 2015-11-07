@@ -5,14 +5,18 @@ class LinksController < ApplicationController
     @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
   end
   def create
-    @link = Link.new(link_params)
-      unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
-      @link.location = "http://"+@link.location
-    end
-    if @link.save
-      redirect_to root_path
+    if Link.all.any?{|l|l.location == params[:location]}
+      render text:"Fool"
     else
-      render "new"
+      @link = Link.new(link_params)
+        unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
+        @link.location = "http://"+@link.location
+      end
+      if @link.save
+        redirect_to root_path
+      else
+        render "new"
+      end
     end
   end
   def new

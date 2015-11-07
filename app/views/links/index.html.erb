@@ -26,7 +26,7 @@
           </div>
           <div class="container link-info">
             <div class="col-xs-9 title">
-              <%= link_to l.title, use_link_path(link_id:l.id), method:'post' %>
+              <%= link_to l.title, use_link_path(link_id:l.id, value:1), method:'post' %>
             </div>
             <div class="col-xs-9 author">
               Submitted by <%= l.user.username %> on <%=l.created_at.strftime("%B %d\, %Y  at %I\:%M %p") %>
