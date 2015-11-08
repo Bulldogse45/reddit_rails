@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   def index
     @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
   end
+
   def create
     @link = Link.new(link_params)
       unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
@@ -19,17 +20,21 @@ class LinksController < ApplicationController
       end
     end
   end
+
   def new
     @link = Link.new
   end
+
   def edit
     @link = Link.find(params[:id])
     render "new"
   end
+
   def show
     @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
     @link = Link.find(params['id'])
   end
+
   def update
     @link = Link.find(params[:id])
     unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
@@ -41,6 +46,7 @@ class LinksController < ApplicationController
       render "new"
     end
   end
+  
   def destroy
     @link = Link.find(params[:id])
     @link.destroy

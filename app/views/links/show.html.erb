@@ -5,17 +5,17 @@
     </div>
     <div class="voting col-xs-6">
       <div class=" col-xs-12 upvote">
-      <%= link_to votes_path(link_id:@link.id, value:1), class:"center-block", method:'post'  do %>
-        <span class="glyphicon glyphicon-arrow-up"></span>
-      <% end %>
+        <%= link_to votes_path(link_id:@link.id, value:1), class:"center-block", method:'post'  do %>
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        <% end %>
       </div>
       <div class=" col-xs-12 votes">
         <p><%= @link.votes.sum(:value) %><p>
       </div>
       <div class=" col-xs-12 downvote">
-      <%= link_to votes_path(link_id:@link.id, value:-1), class:"center-block", method:'post'  do %>
-        <span class="glyphicon glyphicon-arrow-down"></span>
-      <% end %>
+        <%= link_to votes_path(link_id:@link.id, value:-1), class:"center-block", method:'post'  do %>
+          <span class="glyphicon glyphicon-arrow-down"></span>
+        <% end %>
       </div>
     </div>
   </div>
@@ -33,8 +33,8 @@
     </div>
     <div class="col-xs-1">
       <%= link_to edit_link_path(id:@link.id) do %>
-      <span class="glyphicon glyphicon-edit"></span>
-    <% end %>
+        <span class="glyphicon glyphicon-edit"></span>
+      <% end %>
     </div>
     <div class="col-xs-1">
       <%= link_to "Back", root_path %>
