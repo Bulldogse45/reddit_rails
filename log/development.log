@@ -26152,3 +26152,119 @@ Processing by LinksController#show as HTML
   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
   Rendered links/show.html.erb within layouts/application (3.0ms)
 Completed 200 OK in 67ms (Views: 57.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/links/11" for ::1 at 2015-11-08 23:00:34 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LinksController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mLink Load (0.2ms)[0m  SELECT "links".* FROM "links"
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 5]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 6]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 7]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 8]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 9]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 11]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 12]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 13]]
+  [1m[36mLink Load (0.2ms)[0m  [1mSELECT  "links".* FROM "links" WHERE "links"."id" = ? LIMIT 1[0m  [["id", 11]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 11]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered links/show.html.erb within layouts/application (30.3ms)
+Completed 200 OK in 2435ms (Views: 2352.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/assets/application.self-6629453f7c96ddd4f29ef7eb49e51257ebee3a153cd0eb249919426c12705d7f.css?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/links.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/subcategories.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/votes.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/1logo-0cd563b5e903d6d9ea0efefa3ec9426c8029f0fc096a16346dce4bc955ebcf4b.svg" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/assets/bootstrap/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for ::1 at 2015-11-08 23:00:37 -0500
+
+
+Started GET "/" for ::1 at 2015-11-08 23:00:43 -0500
+Processing by LinksController#index as HTML
+  [1m[35mLink Load (0.2ms)[0m  SELECT "links".* FROM "links"
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 2]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 5]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 6]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 7]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 8]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 9]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 11]]
+  [1m[36m (0.1ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 12]]
+  [1m[35m (0.1ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 12]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 11]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mSubcategory Load (0.1ms)[0m  [1mSELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 9]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 8]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?[0m  [["link_id", 13]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mSubcategory Load (0.1ms)[0m  [1mSELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT SUM("votes"."value") FROM "votes" WHERE "votes"."link_id" = ?  [["link_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "subcategories".* FROM "subcategories" WHERE "subcategories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "links" WHERE "links"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "links" WHERE "links"."user_id" = ?[0m  [["user_id", 2]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "links" WHERE "links"."user_id" = ?  [["user_id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "links" WHERE "links"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "links" WHERE "links"."user_id" = ?  [["user_id", 5]]
+  Rendered links/index.html.erb within layouts/application (50.0ms)
+Completed 200 OK in 118ms (Views: 105.1ms | ActiveRecord: 3.2ms)
