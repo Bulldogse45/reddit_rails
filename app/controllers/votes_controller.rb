@@ -6,7 +6,6 @@ class VotesController < ApplicationController
 
   def create
     vote = Vote.create(vote_params)
-    redirect_to root_path
   end
 
   def use_link

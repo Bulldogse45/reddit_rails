@@ -1,0 +1,7 @@
+<h1>All Subs</h1>
+
+<ul>
+<% Subcategory.all.each do |s| %>
+  <li><%= link_to s.name, subcategory_path(name:s.name) %></li>
+<% end %>
+</ul>

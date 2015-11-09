@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
+    @user = User.new(user_params)
+    if @user.save
       redirect_to root_path
     else
       render "new"
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to root_path
   end
-  
+
   def destroy
     @user= User.find(params['id'])
     @user.destroy

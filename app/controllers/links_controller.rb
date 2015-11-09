@@ -6,6 +6,7 @@ class LinksController < ApplicationController
   end
 
   def create
+    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
     @link = Link.new(link_params)
       unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
       @link.location = "http://"+@link.location
@@ -14,11 +15,17 @@ class LinksController < ApplicationController
       redirect_to existing_link_vote_path(value:1, link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
-        redirect_to root_path
+        render "index"
       else
         render "new"
       end
     end
+  end
+
+  def vote
+    Vote.create(vote_params)
+    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
+    render "index"
   end
 
   def new
@@ -46,7 +53,7 @@ class LinksController < ApplicationController
       render "new"
     end
   end
-  
+
   def destroy
     @link = Link.find(params[:id])
     @link.destroy
@@ -56,6 +63,10 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:location, :title, :user_id)
+    params.require(:link).permit(:subcategory_id, :location, :title, :user_id)
+  end
+
+  def vote_params
+    params.permit(:link_id, :test,:value)
   end
 end
