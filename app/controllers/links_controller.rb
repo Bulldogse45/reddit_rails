@@ -12,7 +12,7 @@ class LinksController < ApplicationController
       @link.location = "http://"+@link.location
     end
     if Link.all.any?{|l|l.location == @link.location}
-      redirect_to existing_link_vote_path(value:1, link_id:Link.all.select{|l|l.location == @link.location}.first.id)
+      redirect_to existing_link_vote_path(link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
         render "index"
@@ -23,7 +23,9 @@ class LinksController < ApplicationController
   end
 
   def vote
-    Vote.create(vote_params)
+    vote = Vote.new(vote_params)
+    vote.value=-1 if params[:downvote]
+    vote.save
     @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
     render "index"
   end
@@ -67,6 +69,6 @@ class LinksController < ApplicationController
   end
 
   def vote_params
-    params.permit(:link_id, :test,:value)
+    params.permit(:link_id)
   end
 end
