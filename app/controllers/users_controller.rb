@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params['id'])
+    @user = current_user
     render "new"
   end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user= User.find(params['id'])
+    @user= current_user
     if @user.update(user_params)
       redirect_to root_path
     else
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user= User.find(params['id'])
+    @user= current_user
     @user.destroy
     redirect_to root_path
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :name, :aboutme, :method)
+    params.require(:user).permit(:username, :name, :aboutme, :password, :password_confirmation)
   end
 
 end

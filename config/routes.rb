@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'user_sessions/login' => "user_sessions#new", :as=>:login
 
+  get 'user_sessions/logout' => "user_sessions#destroy", :as=>:logout
   resources :users
   resources :votes
   resources :links
+  resources :user_sessions
 
 
   # The priority is based upon order of creation: first created -> highest priority.
