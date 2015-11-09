@@ -11,21 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106045420) do
+ActiveRecord::Schema.define(version: 20151108180952) do
 
   create_table "links", force: :cascade do |t|
     t.text     "location"
     t.integer  "vote_id"
     t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "title"
+    t.integer  "subcategory_id"
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "title"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
+    t.text     "aboutme"
   end
 
   create_table "votes", force: :cascade do |t|
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151106045420) do
     t.integer  "link_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "value"
   end
 
 end

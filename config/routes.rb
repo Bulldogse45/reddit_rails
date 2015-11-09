@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   resources :users
   resources :votes
   resources :links
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,6 +12,26 @@ Rails.application.routes.draw do
    root 'links#index'
 
    post 'links/use' => 'votes#use_link', :as => :use_link
+
+   post 'links/vote' => 'links#vote', :as => :link_vote
+
+   post 'subcategories/vote' => 'subcategories#vote', :as => :subcategory_vote
+
+   get 'existing/link' => 'votes#existing_link_vote', :as =>:existing_link_vote
+
+   get '/subcategories' => 'subcategories#index', :as => :subcategories
+
+   get '/subcategories/new' => 'subcategories#new', :as => :new_subcategory
+
+   post '/subcategories' => 'subcategories#create'
+
+   get '/:name' => 'subcategories#show', :as => :subcategory
+
+   get '/:name/edit' => 'subcategories#edit', :as => :edit_subcategory
+
+   patch '/:name' => 'subcategories#update'
+
+   delete '/subcategories/:name' => 'subcategories#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

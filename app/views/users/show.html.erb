@@ -1,11 +1,15 @@
 <div class="container">
-  <h1><%= @user.username %></h1>
+  <h1>Username: <%= @user.username %></h1>
+  <h3>Name: <%= @user.name %></h3>
+  <h3> About Me</h3>
+  <p><%= @user.aboutme %></p>
 
   <h3>Posts</h3>
   <ul>
     <% @user.links.sort_by{|l| l.created_at}.each do |l| %>
-      <li><%= l.title %><%=l.created_at.strftime(" created on %B %d\, %Y  at %I\:%M %p") %> </li>
+      <li><%= link_to l.title, link_path(id:l.id) %><%=l.created_at.strftime(" created on %B %d\, %Y  at %I\:%M %p") %> </li>
     <% end %>
   </ul>
+  <%= link_to "Edit user", edit_user_path(id:@user.id) %>
   <%= link_to "Delete user", user_path(id:@user.id), method:'delete' %>
 </div>

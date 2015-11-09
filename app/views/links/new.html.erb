@@ -31,6 +31,10 @@
     <%= collection_select(:link, :user_id, User.all, :id, :username, prompt: true) %>
   </div>
   <div class="row">
+    <%= f.label :subcategory_id, class: "col-xs-2 col-xs-offset-1" %>
+    <%= collection_select(:link, :subcategory_id, Subcategory.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="row">
   <%= f.submit "Save", class: "center-block" %>
   </div>
 <% end %>
