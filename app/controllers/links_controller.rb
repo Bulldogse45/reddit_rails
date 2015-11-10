@@ -11,7 +11,8 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.user = current_user
-    if Link.all.any?{|l|l.location == @link.location}
+    @link.confirm_web_address
+    if Link.all.exists?(location: @link.location)
       redirect_to existing_link_vote_path(link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
@@ -23,7 +24,7 @@ class LinksController < ApplicationController
   end
 
   def vote
-    unless current_user
+    if current_user
       @vote = Vote.new(vote_params)
       @vote.user = current_user
       @vote.value=-1 if params[:downvote]
@@ -32,7 +33,6 @@ class LinksController < ApplicationController
       end
     else
       flash[:warning] = "You must be logged in to vote!"
-      render text:"shutit"
     end
     redirect_to :back
   end
