@@ -1,4 +1,6 @@
 class SubcategoriesController < ApplicationController
+  require 'will_paginate/array'
+
   def index
 
   end
@@ -6,8 +8,8 @@ class SubcategoriesController < ApplicationController
   def create
     @subcategory = Subcategory.new(subcategory_params)
     if @subcategory.save
-      @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse
-      render "index"
+      @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
+      render "show"
     else
       render "new"
     end
@@ -16,7 +18,7 @@ class SubcategoriesController < ApplicationController
   def vote
     Vote.create(vote_params)
     @subcategory = Subcategory.all.select{|s| s.name.downcase==params['name'].downcase}.first
-    @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse
+    @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
     render "show"
   end
 
@@ -26,19 +28,19 @@ class SubcategoriesController < ApplicationController
 
   def edit
     sub =Subcategory.all.select{|s| s.name.downcase==params['name'].downcase}.first
-    render "index"
+    render "links/index"
   end
 
   def show
     @subcategory =Subcategory.all.select{|s| s.name.downcase==params['name'].downcase}.first
-    @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse
+    @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
   end
 
   def update
     @subcategory = Subcategory.find(params['id'])
     if @subcategory.update(subcategory_params)
-      @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse
-      render "index"
+      @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
+      redirect_to subcategory_path(name:@subcategory.name)
     else
       render "new"
     end
