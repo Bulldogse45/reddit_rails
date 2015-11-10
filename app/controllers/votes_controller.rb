@@ -5,16 +5,19 @@ class VotesController < ApplicationController
   end
 
   def create
-    vote = Vote.create(vote_params)
+    @vote = Vote.new(vote_params)
+    @vote.save
   end
 
   def use_link
-    @vote = Vote.create(vote_params)
+    @vote = Vote.new(vote_params)
+    @vote.save
     redirect_to @vote.link.location
   end
 
   def existing_link_vote
-    @vote = Vote.create(vote_params)
+    @vote = Vote.new(vote_params)
+    @vote.user = current_user
     redirect_to root_path
   end
 
@@ -39,6 +42,6 @@ class VotesController < ApplicationController
   private
 
   def vote_params
-    params.permit(:link_id, :test,:value)
+    params.permit(:link_id)
   end
 end

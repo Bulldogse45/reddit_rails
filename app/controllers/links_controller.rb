@@ -26,9 +26,10 @@ class LinksController < ApplicationController
   end
 
   def vote
-    vote = Vote.new(vote_params)
-    vote.value=-1 if params[:downvote]
-    vote.save
+    @vote = Vote.new(vote_params)
+    @vote.user = current_user
+    @vote.value=-1 if params[:downvote]
+    @vote.save
     redirect_to :back
   end
 

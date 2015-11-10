@@ -7,6 +7,7 @@ class SubcategoriesController < ApplicationController
 
   def create
     @subcategory = Subcategory.new(subcategory_params)
+    @subcategory.user_id = current_user
     if @subcategory.save
       @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
       render "show"
@@ -44,10 +45,6 @@ class SubcategoriesController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def destroy
-
   end
 
   private
