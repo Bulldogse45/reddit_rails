@@ -1,4 +1,9 @@
 <div class="container-fluid">
+
+  <% if flash[:warning] %>
+    <div class="warning"><%= flash[:warning] %></div>
+  <% end %>
+
   <div class="links-container col-xs-12 col-md-10">
     <ol>
       <% @links.each do |l| %>
@@ -9,7 +14,7 @@
             </div>
             <div class="voting col-xs-7">
               <div class="col-xs-12 upvote">
-                <%= link_to link_vote_path(link_id:l.id), class:"center-block", method:'post'  do %>
+                <%=link_to link_vote_path(link_id:l.id), class:"center-block", method:'post' do %>
                   <span class="glyphicon glyphicon-arrow-up"></span>
                 <% end %>
               </div>
@@ -35,16 +40,20 @@
                 <p><%= link_to l.subcategory.name, subcategory_path(name:l.subcategory.name) %></p>
               <% end %>
             </div>
-            <div class="col-xs-1 delete">
-              <%= link_to link_path(id:l.id), method:"delete" do%>
-                <span class="glyphicon glyphicon-trash"></span>
-              <% end %>
-            </div>
-            <div class="col-xs-1">
-              <%= link_to edit_link_path(id:l.id) do%>
-                <span class="glyphicon glyphicon-edit"></span>
-              <% end %>
-            </div>
+            <% if current_user == l.user %>
+              <div class="col-xs-1 delete">
+                <%= link_to link_path(id:l.id), method:"delete" do%>
+                  <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+              </div>
+              <div class="col-xs-1">
+                <%= link_to edit_link_path(id:l.id) do%>
+                  <span class="glyphicon glyphicon-edit"></span>
+                <% end %>
+              </div>
+            <% else %>
+            <div class="col-xs-2"></div>
+            <% end %>
             <div class="col-xs-1">
               <%= link_to link_path(id:l.id) do %>
                 <span class="glyphicon glyphicon-info-sign"></span>
