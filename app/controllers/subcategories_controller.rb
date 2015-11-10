@@ -7,10 +7,10 @@ class SubcategoriesController < ApplicationController
 
   def create
     @subcategory = Subcategory.new(subcategory_params)
-    @subcategory.user_id = current_user
+    @subcategory.user = current_user
     if @subcategory.save
       @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
-      render "show"
+      redirect_to subcategories_path
     else
       render "new"
     end
@@ -19,8 +19,7 @@ class SubcategoriesController < ApplicationController
   def vote
     Vote.create(vote_params)
     @subcategory = Subcategory.all.select{|s| s.name.downcase==params['name'].downcase}.first
-    @links = Link.all.select{|l| l.subcategory_id == @subcategory.id}.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
-    render "show"
+    redirect_to subcategory_path(id:@subcategory.id)
   end
 
   def new

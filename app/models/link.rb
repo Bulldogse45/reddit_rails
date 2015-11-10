@@ -9,7 +9,7 @@ class Link < ActiveRecord::Base
   belongs_to :subcategory
 
   def confirm_web_address
-    unless self.location[/\Ahttp:\/\//] || self.location[/\Ahttps:\/\//]
+    unless self.location[/\Ahttp:\/\//] || self.location[/\Ahttps:\/\//]||self.location == ""
     self.location = "http://"+self.location
     end
   end
