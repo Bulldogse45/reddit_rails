@@ -1,21 +1,24 @@
 class LinksController < ApplicationController
 
+  require 'will_paginate/array'
 
   def index
-    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
+    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
+    #@links = Link.paginate(:page => params[:page], :per_page => 10).sort_by{|l| l.votes.sum(:value)}.reverse
+
   end
 
   def create
-    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
     @link = Link.new(link_params)
+      @link.user = current_user
       unless @link.location[/\Ahttp:\/\//] || @link.location[/\Ahttps:\/\//]
       @link.location = "http://"+@link.location
     end
     if Link.all.any?{|l|l.location == @link.location}
-      redirect_to existing_link_vote_path(value:1, link_id:Link.all.select{|l|l.location == @link.location}.first.id)
+      redirect_to existing_link_vote_path(link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
-        render "index"
+        redirect_to root_path
       else
         render "new"
       end
@@ -23,9 +26,10 @@ class LinksController < ApplicationController
   end
 
   def vote
-    Vote.create(vote_params)
-    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
-    render "index"
+    vote = Vote.new(vote_params)
+    vote.value=-1 if params[:downvote]
+    vote.save
+    redirect_to :back
   end
 
   def new
@@ -38,8 +42,9 @@ class LinksController < ApplicationController
   end
 
   def show
-    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse
     @link = Link.find(params['id'])
+    @links = Link.all.select{|l| l.id == @link.id}
+
   end
 
   def update
@@ -63,10 +68,10 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:subcategory_id, :location, :title, :user_id)
+    params.require(:link).permit(:subcategory_id, :location, :title)
   end
 
   def vote_params
-    params.permit(:link_id, :test,:value)
+    params.permit(:link_id)
   end
 end
