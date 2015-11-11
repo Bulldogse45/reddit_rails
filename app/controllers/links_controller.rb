@@ -14,6 +14,7 @@ class LinksController < ApplicationController
       redirect_to existing_link_vote_path(link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
+        Vote.create(user:current_user, link_id:@link.id)
         redirect_to root_path
       else
         render "new"
