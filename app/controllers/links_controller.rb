@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    @links = Link.select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("votes.link_id").paginate(:page => params[:page], :per_page => 10)
+    @links = Link.select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("links.id").paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
