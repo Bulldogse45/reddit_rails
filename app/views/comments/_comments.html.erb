@@ -1,0 +1,20 @@
+<% unless @content.comments.empty?  %>
+  <% @content.comments.each do |c| %>
+  <div class="col-xs-10">
+    <p><%= c.content %><p>
+  </div>
+    <%= form_for @content, html: {class: "form-horizontal"} do |f| %>
+      <div class="form-group">
+        <%= f.label :content, class: "col-sm-2 control-label" %>
+        <div class="col-sm-5">
+          <%= f.text_area :content, class: "form-control" %>
+          <%= f.hidden_field :comment_id, :value => @content.id %>
+        </div>
+      </div>
+      <div class="row">
+        <%= f.submit "Save", class: "center-block" %>
+      </div>
+    <% end %>
+    <%= render "comments/comments"%>
+  <% end %>
+<% end %>

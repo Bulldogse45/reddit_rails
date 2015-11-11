@@ -7,6 +7,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
   has_many :votes
   belongs_to :subcategory
+  has_many :comments
 
   def confirm_web_address
     unless self.location[/\Ahttp:\/\//] || self.location[/\Ahttps:\/\//]||self.location == ""

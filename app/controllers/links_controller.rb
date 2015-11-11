@@ -46,6 +46,7 @@ class LinksController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @link = Link.find(params['id'])
     @links = Link.all.select{|l| l.id == @link.id}
 
