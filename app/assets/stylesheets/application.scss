@@ -19,7 +19,7 @@
 .jumbotron{
   background-color: #000;
   color:#fff;
-  height:90px;
+  height:100px;
   padding:0;
 }
 .jumbotron a{
@@ -31,16 +31,23 @@
 
 .logo{
   height: 65px;
+  margin-top: 10px;
 }
 .jumbotron h1{
   margin:0;
   padding:0;
   border: 0;
   font-size: 42px;
+  margin-top: 20px;
 
 }
 body{
   background-color: #fcfcfa;
+}
+.top-nav{
+  display:block;
+  float:right;
+  clear: both;
 }
 .header-link:hover{
   text-decoration: none;
