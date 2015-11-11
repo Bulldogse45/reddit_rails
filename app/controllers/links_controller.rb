@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
 
+  before_action :require_user, only: [:create, :new]
   require 'will_paginate/array'
 
   def index

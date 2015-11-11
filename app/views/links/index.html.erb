@@ -1,8 +1,6 @@
 <div class="container-fluid">
 
-  <% if flash[:warning] %>
-    <div class="warning"><%= flash[:warning] %></div>
-  <% end %>
+
 
   <div class="links-container col-xs-12 col-md-10">
     <ol>
@@ -11,11 +9,11 @@
     <%= will_paginate @links %>
   </div>
   <div class="users-container col-xs-12 col-md-2">
-    <h1 class="text-center"> Users </h1>
+    <h4 class="text-center"> Popular Subbests </h4>
     <ol>
-      <% User.all.sort_by{|u| u.links.count}.reverse.each do |u| %>
+      <% Subcategory.all.sort_by{|s| s.links.count}.reverse.each do |s| %>
         <li>
-          <%= link_to u.username, user_path(id:u.id) %>
+          <%= link_to s.name, subcategory_path(name:s.name) %>
         </li>
       <% end %>
     </ol>

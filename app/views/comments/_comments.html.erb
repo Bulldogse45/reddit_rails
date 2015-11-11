@@ -1,19 +1,17 @@
 <% unless @content.comments.empty?  %>
   <% @content.comments.each do |c| %>
-  <div class="col-xs-10">
-    <p><%= c.content %><p>
-  </div>
-    <%= form_for @content, html: {class: "form-horizontal"} do |f| %>
-      <div class="form-group">
-        <%= f.label :content, class: "col-sm-2 control-label" %>
-        <div class="col-sm-5">
-          <%= f.text_area :content, class: "form-control" %>
-          <%= f.hidden_field :comment_id, :value => @content.id %>
-        </div>
-      </div>
-      <div class="row">
-        <%= f.submit "Save", class: "center-block" %>
-      </div>
-    <% end %>
+    <div class="col-xs-12">
+      <p><%= c.content  %>
+        <p class="comment-author">Submitted by <%= link_to c.user.username, user_path(id:c.user.id) %> on <%=c.created_at.strftime("%B %d\, %Y  at %I\:%M %p") %> <%= link_to "Comment", comment_path(id:c.id) %></p>
+
+      </p>
+    </div>
+    <div class="col-xs-12">
+      <p><% link_to "Comment", link_path(id:c.id) %></p>
+    </div>
+    <% @content = c %>
+    <div class="col-xs-12 comment-box">
+      <%= render "comments/comments" %>
+    </div>
   <% end %>
 <% end %>

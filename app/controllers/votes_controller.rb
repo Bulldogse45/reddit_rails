@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
 
+  before_action :require_user, :only =>[:create, :new]
+
   def index
     redirect_to root_path
   end

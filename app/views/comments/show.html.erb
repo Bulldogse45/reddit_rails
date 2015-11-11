@@ -1,0 +1,33 @@
+
+<% @c = @comment %>
+<div class="container">
+  <div class="col-xs-9 summary"
+    <p><%= @c.content %></p><% link_to "Comment", link_path(id:@c.id) %>
+  </div>
+</div>
+<div class="container">
+  <% @comment = Comment.new %>
+  <%= form_for @comment, html: {class: "form-horizontal"} do |f| %>
+    <div class="form-group">
+      <%= f.label :content, class: "col-sm-2 control-label" %>
+      <div class="col-sm-5">
+        <%= f.text_area :content, class: "form-control" %>
+        <%= f.hidden_field :comment_id, :value => @c.id %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit "Save", class: "center-block" %>
+    </div>
+  <% end %>
+  <% if @c.comments.exists? %>
+    <div class="comments container">
+      <% @c.comments.each do |c| %>
+        <div class="comments-box">
+          <p><%= c.content %><p><%= link_to "Comment", comment_path(id:c.id) %>
+        </div>
+        <% @content = c%>
+        <%= render "comments/comments"%>
+      <% end %>
+    <% end %>
+  </div>
+</div>

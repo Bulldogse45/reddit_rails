@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RedditRails</title>
+  <title>Webbest</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
         <%= image_tag "1logo.svg", class:"logo"%>
       </div>
       <div class="col-xs-7 col-sm-5 text-left">
-        <h1>Webest</h1>
+        <h1>Webbest</h1>
       </div>
     <% end %>
     <% if current_user %>
@@ -46,6 +46,11 @@
 
 
   </div>
+
+  <% if flash[:warning] %>
+    <div class="warning"><%= flash[:warning] %></div>
+  <% end %>
+
 <%= yield %>
 
 </body>

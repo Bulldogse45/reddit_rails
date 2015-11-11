@@ -11,8 +11,14 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
-    @comment.save
+    unless @comment.save
+      flash[:warning] = "You must be logged in to comment"
+    end
     redirect_to :back
+  end
+
+  def show
+    @comment = Comment.find(params['id'])
   end
 
   private
