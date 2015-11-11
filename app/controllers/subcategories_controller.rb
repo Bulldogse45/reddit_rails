@@ -9,7 +9,7 @@ class SubcategoriesController < ApplicationController
     @subcategory = Subcategory.new(subcategory_params)
     @subcategory.user = current_user
     if @subcategory.save
-      @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("votes.link_id").paginate(:page => params[:page], :per_page => 10)
+      @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("links.id").paginate(:page => params[:page], :per_page => 10)
       redirect_to subcategories_path
     else
       render "new"
@@ -33,13 +33,13 @@ class SubcategoriesController < ApplicationController
 
   def show
     @subcategory =Subcategory.all.select{|s| s.name.downcase==params['name'].downcase}.first
-    @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("votes.link_id").paginate(:page => params[:page], :per_page => 10)
+    @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("links.id").paginate(:page => params[:page], :per_page => 10)
   end
 
   def update
     @subcategory = Subcategory.find(params['id'])
     if @subcategory.update(subcategory_params)
-      @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("votes.link_id").paginate(:page => params[:page], :per_page => 10)
+      @links = Link.where(subcategory:@subcategory).select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("links.id").paginate(:page => params[:page], :per_page => 10)
       redirect_to subcategory_path(name:@subcategory.name)
     else
       render "new"
