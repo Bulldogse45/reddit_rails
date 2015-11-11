@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110152446) do
+ActiveRecord::Schema.define(version: 20151111024039) do
 
   create_table "links", force: :cascade do |t|
     t.text     "location"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20151110152446) do
     t.datetime "updated_at",     null: false
     t.string   "title"
     t.integer  "subcategory_id"
+    t.text     "summary"
   end
 
   create_table "subcategories", force: :cascade do |t|

@@ -72,7 +72,7 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:subcategory_id, :location, :title)
+    params.require(:link).permit(:summary,:subcategory_id, :location, :title)
   end
 
   def vote_params
