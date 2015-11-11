@@ -1,20 +1,21 @@
 class LinksController < ApplicationController
 
+  before_action :require_user, only: [:create, :new]
   require 'will_paginate/array'
 
   def index
-    @links = Link.all.sort_by{|l| l.votes.sum(:value)}.reverse.paginate(:page => params[:page], :per_page => 10)
-    #@links = Link.paginate(:page => params[:page], :per_page => 10).sort_by{|l| l.votes.sum(:value)}.reverse
-
+    @links = Link.select("links.*, SUM(votes.value) AS vote_count").order("vote_count DESC").joins(:votes).group("votes.link_id").paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
     @link = Link.new(link_params)
     @link.user = current_user
-    if Link.all.any?{|l|l.location == @link.location}
+    @link.confirm_web_address
+    if Link.all.exists?(location: @link.location)
       redirect_to existing_link_vote_path(link_id:Link.all.select{|l|l.location == @link.location}.first.id)
     else
       if @link.save
+        Vote.create(user:current_user, link_id:@link.id)
         redirect_to root_path
       else
         render "new"
@@ -23,7 +24,7 @@ class LinksController < ApplicationController
   end
 
   def vote
-    unless current_user
+    if current_user
       @vote = Vote.new(vote_params)
       @vote.user = current_user
       @vote.value=-1 if params[:downvote]
@@ -32,7 +33,6 @@ class LinksController < ApplicationController
       end
     else
       flash[:warning] = "You must be logged in to vote!"
-      render text:"shutit"
     end
     redirect_to :back
   end
@@ -47,6 +47,7 @@ class LinksController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @link = Link.find(params['id'])
     @links = Link.all.select{|l| l.id == @link.id}
 
@@ -73,7 +74,7 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:subcategory_id, :location, :title)
+    params.require(:link).permit(:summary,:subcategory_id, :location, :title)
   end
 
   def vote_params

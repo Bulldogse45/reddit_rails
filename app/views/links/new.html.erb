@@ -26,6 +26,12 @@
       <%= f.text_field :location, class: "form-control" %>
     </div>
   </div>
+  <div class="form-group">
+    <%= f.label :summary, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :summary, class: "form-control" %>
+    </div>
+  </div>
   <div class="row">
     <%= f.label :subcategory_id, class: "col-xs-2 col-xs-offset-1" %>
     <%= collection_select(:link, :subcategory_id, Subcategory.all, :id, :name, prompt: true) %>

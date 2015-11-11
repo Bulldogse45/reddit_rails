@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+
   get 'user_sessions/login' => "user_sessions#new", :as=>:login
 
   get 'user_sessions/logout' => "user_sessions#destroy", :as=>:logout
   resources :users
   resources :votes
-  resources :links
+  resources :links do
+    resources :comments
+  end
+  resources :comments do
+    resources :comments
+  end
   resources :user_sessions
 
 

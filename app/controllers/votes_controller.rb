@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
 
+  before_action :require_user, :only =>[:create, :new]
+
   def index
     redirect_to root_path
   end
@@ -18,6 +20,11 @@ class VotesController < ApplicationController
   def existing_link_vote
     @vote = Vote.new(vote_params)
     @vote.user = current_user
+    unless @vote.save
+      flash[:warning]= @vote.errors.first.last
+    else
+      flash[:warning]= "That link already exists!  It was given a vote in your name."
+    end
     redirect_to root_path
   end
 
