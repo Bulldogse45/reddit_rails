@@ -1,0 +1,20 @@
+
+<h1><%= @tag.name %></h1>
+<div class="container-fluid">
+  <div class="links-container col-xs-12 col-md-10">
+    <ol>
+      <%= render "links/linkinfo" %>
+    </ol>
+    <%= will_paginate @links %>
+  </div>
+  <div class="users-container col-xs-12 col-md-2">
+    <h1 class="text-center"> Users </h1>
+    <ol>
+      <% User.all.sort_by{|u| u.links.count}.reverse.each do |u| %>
+        <li>
+          <%= link_to u.username, user_path(id:u.id) %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
 
   before_action :require_user, only: [:create, :new]
+
   require 'will_paginate/array'
 
   def index
@@ -74,10 +75,14 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:summary,:subcategory_id, :location, :title)
+    params.require(:link).permit(:tag_names,:summary,:subcategory_id, :location, :title)
+
   end
 
   def vote_params
     params.permit(:link_id)
   end
+
+
+
 end

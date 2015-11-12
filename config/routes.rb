@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :tags do
+    resources :taggings
+  end
+  resources :taggings
   get 'user_sessions/login' => "user_sessions#new", :as=>:login
 
   get 'user_sessions/logout' => "user_sessions#destroy", :as=>:logout
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :comments do
     resources :comments
+    resources :taggings
   end
   resources :user_sessions
 

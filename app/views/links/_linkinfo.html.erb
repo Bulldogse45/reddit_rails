@@ -35,6 +35,11 @@
         <% unless l.subcategory == nil %>
           <p>Submitted to <%= link_to l.subcategory.name, subcategory_path(name:l.subcategory.name) %></p>
         <% end %>
+        <p>Tags:
+          <% l.tags.each do |t| %>
+            <%= t.name %>
+          <% end %>
+        </p>
       </div>
     </div>
     <div class="col-xs-3 edit-info">
